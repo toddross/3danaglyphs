@@ -2,20 +2,22 @@ body {
   font-size: 1em;
   line-height: 1.4;
   background: black;
-  color: white;
+  color: #ddd;
   margin: 0;
   padding: 2em;
 }
 
 
 div {
-  margin-bottom: 4em;
+  position: relative; /* Needed to overlap SVGs */
+  height: 200px; /* Needed to avoid layout changes as text animates */
 }
 
 
 p {
   font-size: 1.2em;
   line-height: 1.4;
+  font-family: 'Rambla', sans-serif;
 }
 
 
@@ -23,59 +25,78 @@ h1 {
   margin: 0;
   padding: 0;
   font-size: 3em;
-  color:rgba(0,255,255,0.5);
+  color: rgba(0,255,255,0.5);
+  font-family: 'Kavoon', cursive;
 }
 
-h1.forward {
-  text-shadow: rgba(255,0,0,0.5) 4px 0px 0px; /* shift red shadow right (extrude) */
+div.forward h1 {
+  text-shadow: rgba(255,0,0,0.5) 4px 0px 0px; /* Shift red shadow right (extrude) */
 }
 
-h1.backward {
-  text-shadow: rgba(255,0,0,0.5) -4px 0px 0px; /* shift red shadow left (sink) */
+div.backward h1 {
+  text-shadow: rgba(255,0,0,0.5) -4px 0px 0px; /* Shift red shadow left (sink) */
 }
 
-h1.sinkandpop{
-  -webkit-animation-name: sinkandpop;
+div.sinkandpop h1 {
+  -webkit-animation-name: textSinkandpop;
   -webkit-animation-duration: 2s;
   -webkit-animation-iteration-count: infinite;
   -webkit-animation-delay: .12s;
 }
 
-h1.grow{
-  -webkit-animation-name: grow;
+div.grow h1 {
+  -webkit-animation-name: textGrow;
   -webkit-animation-duration: 2s;
   -webkit-animation-iteration-count: infinite;
   -webkit-animation-delay: .12s;
 }
 
 
-@-webkit-keyframes sinkandpop {
+@-webkit-keyframes textSinkandpop {
   from {
-    text-shadow: rgba(255,0,0,0.5) 6px 0px 0px; /* shift red shadow right (extrude) */
+    text-shadow: rgba(255,0,0,0.5) 6px 0px 0px; /* Shift red shadow right (extrude) */
     -webkit-animation-timing-function: ease-out;
   }
   50% {
-    text-shadow: rgba(255,0,0,0.5) -6px 0px 0px; /* shift red shadow left (sink) */
+    text-shadow: rgba(255,0,0,0.5) -6px 0px 0px; /* Shift red shadow left (sink) */
   }
   to {
-    text-shadow: rgba(255,0,0,0.5) 6px 0px 0px; /* shift red shadow right (extrude) */
+    text-shadow: rgba(255,0,0,0.5) 6px 0px 0px; /* Shift red shadow right (extrude) */
     -webkit-animation-timing-function: ease-out;
   }
 }
 
-@-webkit-keyframes grow {
-  from { /* small and sunken */
-    font-size: 4em; /* grow font */
-    text-shadow: rgba(255,0,0,0.5) -6px 0px 0px; /* shift red shadow left (sink) */
+@-webkit-keyframes textGrow {
+  from { /* Small and sunken */
+    font-size: 4em; /* Grow font */
+    text-shadow: rgba(255,0,0,0.5) -6px 0px 0px; /* Shift red shadow left (sink) */
     -webkit-animation-timing-function: ease-out;
   }
   50% {
-    font-size: 2em; /* shrink font */
-    text-shadow: rgba(255,0,0,0.5) 6px 0px 0px; /* shift red shadow right (extrude) */
+    font-size: 2em; /* Shrink font */
+    text-shadow: rgba(255,0,0,0.5) 6px 0px 0px; /* Shift red shadow right (extrude) */
   }
   to {
-    font-size: 4em; /* grow font */
-    text-shadow: rgba(255,0,0,0.5) -6px 0px 0px; /* shift red shadow left (sink) */
+    font-size: 4em; /* Grow font */
+    text-shadow: rgba(255,0,0,0.5) -6px 0px 0px; /* Shift red shadow left (sink) */
     -webkit-animation-timing-function: ease-out;
   }
+}
+
+
+svg {
+  position: absolute;
+}
+
+div.forward svg.layer-red,
+div.backward svg.layer-cyan {
+  left: 10px;
+}
+
+svg.layer-cyan polygon {
+  fill: rgba(0,255,255,0.5);
+}
+
+svg.layer-red polygon {
+  fill: rgba(255,0,0,0.5);
 }
