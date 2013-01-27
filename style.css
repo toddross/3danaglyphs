@@ -8,9 +8,9 @@ body {
 }
 
 
-div {
+div.example {
   position: relative; /* Needed to overlap SVGs */
-  height: 200px; /* Needed to avoid layout changes as text animates */
+  height: 300px; /* Needed to avoid layout changes as text animates */
 }
 
 
@@ -100,3 +100,54 @@ svg.layer-cyan polygon {
 svg.layer-red polygon {
   fill: rgba(255,0,0,0.5);
 }
+
+
+div.container-layer {
+  position: absolute;
+}
+
+div.container {
+  width: 200px;
+  height: 200px;
+  float: left;
+}
+div.container figure {
+  display: block;
+  width: 55px;
+  height: 55px;
+  float: left;
+  margin: 5px;
+}
+
+#cyan figure {
+  background: rgba(0,255,255,0.5);
+}
+#red figure {
+  background: rgba(255,0,0,0.5);
+}
+
+#cyan div.container {
+  -webkit-perspective: 200px;
+}
+#cyan div.container-left figure {
+  -webkit-transform: rotateY( 45deg );
+}
+#cyan div.container-right figure {
+  -webkit-transform: rotateY( -45deg );
+}
+
+#red div.container {
+  -webkit-perspective: 100px;
+}
+#red div.container-left figure {
+  -webkit-transform: rotateY( 35deg );
+}
+#red div.container-right figure {
+  -webkit-transform: rotateY( -35deg );
+}
+
+#red div.container-left {
+  margin-left: -5px;
+  margin-right: 10px;
+}
+
